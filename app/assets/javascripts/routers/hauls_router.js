@@ -46,11 +46,15 @@ Hauler.Routers.Hauls = Backbone.Router.extend({
 	},
 	
 	showHaul: function(id){
-		var haul = Hauler.Collections.hauls.getOrFetch(id);
-		var view = new Hauler.Views.HaulShow({
-			model: haul
+		var current_user_id = JSON.parse($('#bootstrapped-current-user').html()).id
+		var that = this;
+		Hauler.Collections.hauls.getOrFetch(id, function(haul){
+			var view = new Hauler.Views.HaulShow({
+				model: haul,
+				cUser: current_user_id
+			});
+			that._swapView(view)
 		});
-		this._swapView(view)
 	},
 	
 	

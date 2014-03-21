@@ -1,7 +1,18 @@
 Hauler.Views.HaulShow = Backbone.CompositeView.extend({
 	
-	initialize: function(){
+	initialize: function(options){
+		this._cUser = options.cUser
 		this.listenTo(this.model, 'sync', this.render)
+		this.listenTo(this.model.postImages(), 'sync', this.render)
+		var that = this;
+		
+		this.model.postImages().forEach(function(img){
+			
+			var subView = new Hauler.Views.HaulImage ({
+				model: img
+			});
+			that.addSubview('div.row', subView)
+		})
 	},
 	
 	events: {
@@ -15,10 +26,13 @@ Hauler.Views.HaulShow = Backbone.CompositeView.extend({
 	template: JST['hauls/show'],
 	
 	render: function(){
+		
 		var content = this.template({
-			haul: this.model
+			haul: this.model,
+			cUser: this._cUser
 		})
 		this.$el.html(content);
+		this.renderSubviews()
 		return this;
 	},
 
@@ -49,10 +63,14 @@ Hauler.Views.HaulShow = Backbone.CompositeView.extend({
 		reader.readAsDataURL(file);
 	},
 	
+	showPostImage: function() {
+		
+	},
+	
 	submitHaulImage: function(event){
 		event.preventDefault();
-		console.log(this.fileData);
-		
+		$('button#post-haul-image').html("Posting...")
+		var that = this;
 		var params = $(event.currentTarget.form).serializeJSON()['post_image']
 		var postImage = new Hauler.Models.PostImage({
 			post_image:{
@@ -63,15 +81,19 @@ Hauler.Views.HaulShow = Backbone.CompositeView.extend({
 		
 		postImage.save({},{
 			
-			success: function(a,b,c){
+			success: function(a,response,c){
+				
+				var img = new Hauler.Models.PostImageUrl(response);
+				that.model.postImages().push(img);
+				var subView = new Hauler.Views.HaulImage ({
+					model: img
+				});
+				that.addSubview('div.row', subView);
 				debugger
-				console.log(a);
-				console.log(b);
-				console.log(c);
-			},
-			error: function(a,b,c){
-				debugger
+				$('#haulImage-modal').remove();
+				$('div.modal-backdrop').remove()
 			}
+
 		})
 	}
 	

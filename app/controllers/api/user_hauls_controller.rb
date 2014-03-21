@@ -1,4 +1,4 @@
-class UserHaulsController < ApplicationController
+class Api::UserHaulsController < ApplicationController
 
   def index
     @user = User.find(params[:user_id])

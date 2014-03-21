@@ -1,6 +1,13 @@
 
-<p> Hi from the haul page </p>
-<p> <%= haul.escape('title')%> </p>
+
+<center> <p> <%= haul.escape('title')%> </p> </center>
 <p> <%= haul.escape('description')%> </p>
-<button class='btn btn-primary' id='add-post-image'> Add Your Own Image!
-</button>
+<% if (haul.escape('owner_id') === cUser.toString()) { %>
+	<%= console.log('true') %>
+	<button class='btn btn-primary' id='add-post-image'> Add Your Own Image!
+	</button>
+<% }%>
+<hr>
+<br>
+
+<div class='row'> </div>

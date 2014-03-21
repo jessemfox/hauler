@@ -2,7 +2,8 @@ Hauler.Views.HaulImage = Backbone.View.extend({
 	
 	initialize: function(options){
 		this.model = options.model;
-		this._owner = Hauler.Collections.users.get(this.model.id);
+		this.haul_id = this.model.get('haul')
+		this._owner = Hauler.Collections.users.get(this.model.get('owner'));
 	},
 	
 	attributes: function(){
@@ -11,6 +12,10 @@ Hauler.Views.HaulImage = Backbone.View.extend({
 			'data-haul' : this.model.id,
 			'class' : 'col-xs-4 square'
 		}
+	},
+	
+	events: {
+		// 'mouseover img' : 'showProductInfo'
 	},
 	
 	template: JST['hauls/image'],
@@ -29,6 +34,10 @@ Hauler.Views.HaulImage = Backbone.View.extend({
 		});
 		this.$el.html(content);
 		return this;
+		
+	},
+	
+	showProductInfo: function(){
 		
 	}
 	

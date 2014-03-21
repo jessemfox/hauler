@@ -1,4 +1,7 @@
 
 
+json.url @post_image.photo.url(:browser)
 json.haul @post_image.haul_id
-json.imgUrl  @post_image.photo.url(:browser)
+json.owner @haul.owner_id
+
+

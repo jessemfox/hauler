@@ -18,7 +18,7 @@ class HaulsController < ApplicationController
     @haul = Haul.find(params[:id])
     @postImages = @haul.post_images
     #make jbuilder later
-    render :json => @haul, include: :post_images
+    render "hauls/show"
   end
 
   private

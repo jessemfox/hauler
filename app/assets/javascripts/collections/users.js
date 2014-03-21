@@ -1,7 +1,7 @@
 Hauler.Collections.Users = Backbone.Collection.extend({
 
   model: Hauler.Models.User,
-	url: '/users',
+	url: '/api/users',
 	
 	getOrFetch: function(id){
 		var user;
