@@ -1,0 +1,23 @@
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+  <div class="container-fluid">
+    <ul class='nav navbar-nav'>
+			<li class="active"><a href="/#/trending">Trending</a></li>
+      <li><a href="#">My Feed</a></li>
+			<li><a href="/#/postHaul">Post Haul</a></li>
+			
+		</ul>
+  </div>
+</nav>
+
+
+<div id="content" class="container">
+	
+</div>
+<script type="application/json" id='bootstrapped-current-user'>
+	<%= @user.to_json.html_safe %>
+</script>
+<script>
+  $(function () {
+    Hauler.initialize();
+  });
+</script>

@@ -1,0 +1,27 @@
+
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Make Your Haul</h4>
+      </div>
+      <div class="modal-body">
+				<form>
+					<input type='hidden' name='haul[owner_id]' value='<%= cUser%>'
+					<label for='modal-title'> Title</label><br>
+						<input type='text' name='haul[title]' placeholder='Enter Title' id='modal-title'></input><br>
+					
+					
+					<label for='modal-desc'> Description</label><br>
+						<input type='text' name='haul[description]' placeholder='Enter Description' id='modal-desc'></input><br>
+					</label>
+				
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button id='post-haul' type="button" class="btn btn-primary">Post</button>
+				</form>
+      </div>
+    </div>
+  </div>
