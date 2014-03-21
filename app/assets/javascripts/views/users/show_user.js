@@ -1,6 +1,6 @@
-Hauler.Views.UserShow = Backbone.CompositeView.extend({
+Hauler.Views.UserFeed = Backbone.CompositeView.extend({
 	
-	template: JST['users/show'],
+	template: JST['users/feed'],
 	
 	render: function(){
 		var content = this.template({

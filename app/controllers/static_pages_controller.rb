@@ -1,7 +1,8 @@
 class StaticPagesController < ApplicationController
 
   def root
-    @user = current_user
+    redirect_to apps_url 
+    
   end
 
 end

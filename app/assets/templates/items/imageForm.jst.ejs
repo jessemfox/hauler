@@ -6,11 +6,11 @@
         <h4 class="modal-title">Make Your Haul</h4>
       </div>
       <div class="modal-body">
-				<form enctype="multipart/form-data">
+				<form class='submitPostImage' enctype="multipart/form-data">
 					<input type='hidden' name='post_image[haul_id]' value='<%=haul%>'> </input>
-					<input type='file' name='post_image[photo]' class='file-upload-input'></input>
+					<input type='file' name='post_image[photo]' class='file-upload-input'></input><br>
 					
-				
+				<canvas id='pic-preview'  width="220" height="220"></canvas>
         
       </div>
       <div class="modal-footer">

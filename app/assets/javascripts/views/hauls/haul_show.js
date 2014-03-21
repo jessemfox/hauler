@@ -19,8 +19,7 @@ Hauler.Views.HaulShow = Backbone.CompositeView.extend({
 		'click button#add-post-image' : "showPostImageModal",
 		'click button.close-mymodal' : "removeModal",
 		'change input.file-upload-input': "retrieveFile",
-		'click button#post-haul-image' : 'submitHaulImage'
-		
+		'click button#post-haul-image' : 'submitHaulImage'		
 	},
 	
 	template: JST['hauls/show'],
@@ -54,17 +53,32 @@ Hauler.Views.HaulShow = Backbone.CompositeView.extend({
 	},
 	
 	retrieveFile: function (event) {
+		var img = $('<img>');
+		
 		var that = this;
 		var file = event.target.files[0];
 		var reader = new FileReader();
 		reader.onload = function (e) {
 			that.fileData = e.target.result;			
+			img.attr('src', e.target.result);
+			var canvas = that.$('#pic-preview')[0];
+			var ctx = canvas.getContext('2d');		
+			ctx.drawImage(img[0], 0, 0, 220, 220);
 		}
 		reader.readAsDataURL(file);
 	},
 	
 	showPostImage: function() {
+		var user = Hauler.Collections.users.getOrFetch(this._cUser)
+		var newSquare = $('<div class="col-xs-4 square">')
+		var preview = this.$('#pic-preview')[0]
+		newSquare.append(preview)
+		var label = $('<div class="square-label"><span>' + user.escape('email') + "</span></div>")
+		newSquare.append(label[0])
+		$('div.row').append(newSquare[0])
 		
+		$('#haulImage-modal').modal('hide');
+		$('div.modal-backdrop').remove()
 	},
 	
 	submitHaulImage: function(event){
@@ -81,20 +95,21 @@ Hauler.Views.HaulShow = Backbone.CompositeView.extend({
 		
 		postImage.save({},{
 			
+			
 			success: function(a,response,c){
 				
 				var img = new Hauler.Models.PostImageUrl(response);
 				that.model.postImages().push(img);
-				var subView = new Hauler.Views.HaulImage ({
-					model: img
-				});
-				that.addSubview('div.row', subView);
-				debugger
-				$('#haulImage-modal').remove();
-				$('div.modal-backdrop').remove()
+				// var subView = new Hauler.Views.HaulImage ({
+// 					model: img
+// 				});
+// 				that.addSubview('div.row', subView);
+				
 			}
 
 		})
+		
+		that.showPostImage();
 	}
 	
 })

@@ -4,17 +4,35 @@ Hauler.Routers.Hauls = Backbone.Router.extend({
 		'' : 'currentUserFeed',
 		'trending' : 'trendShow',
 		'postHaul' : 'postHaul',
-		'hauls/:id' : 'showHaul'
+		'hauls/:id' : 'showHaul',
+		'users/:id' : 'userProfile'
 	},
 	
 	currentUserFeed: function(){
 		var current_user_id = JSON.parse($('#bootstrapped-current-user').html()).id
 		var user = Hauler.Collections.users.getOrFetch(current_user_id)
 	
-		var view = new Hauler.Views.UserShow({
+		var view = new Hauler.Views.UserFeed({
 			model: user
 		})
 		this._swapView(view)
+		
+	},
+	
+	userProfile: function(id){
+		var user = Hauler.Collections.users.getOrFetch(id);
+		var userHauls = new Hauler.Collections.MyHauls({
+			user: user
+		})
+		var that = this;
+		userHauls.fetch({
+			success: function(){
+				var view = new Hauler.Views.UserShow({
+					collection: userHauls
+				});
+				that._swapView(view);
+			}
+		})
 		
 	},
 	
