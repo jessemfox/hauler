@@ -31,12 +31,21 @@ div.square-label{
 
 body{
 	background-color:#e7e7e7;
+	padding:3%;
 }
 
 canvas{
 	position:absolute;
 	left:0px;
-	float:left;
+	float:right;
+	padding:0px;
+	margin:0px;
+}
+
+canvas#cover-preview{
+	position:absolute;
+	left:250px;
+	top:0px;
 	padding:0px;
 	margin:0px;
 }
@@ -47,7 +56,20 @@ form.submitPostImage{
 	width:240px;
 }
 
-div
+form.submitHaul{
+	position:relative;
+	height:400px;
+	width:240px;
+}
+
+div#content{
+	padding-top: 35px;;
+}
+
+div#make-haul-body{
+	height:240px;
+	position:relative;
+}
 
 img.img-square{
 	position:absolute;

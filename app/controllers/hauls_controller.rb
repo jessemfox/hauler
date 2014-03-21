@@ -24,7 +24,7 @@ class HaulsController < ApplicationController
   private
   
   def haul_params
-    params.require(:haul).permit(:owner_id, :description, :title)
+    params.require(:haul).permit(:owner_id, :description, :title, :cover_photo)
   end
 
 end

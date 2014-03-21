@@ -2,15 +2,22 @@
 #
 # Table name: hauls
 #
-#  id          :integer          not null, primary key
-#  title       :string(255)
-#  description :text
-#  created_at  :datetime
-#  updated_at  :datetime
-#  owner_id    :integer
+#  id                       :integer          not null, primary key
+#  title                    :string(255)
+#  description              :text
+#  created_at               :datetime
+#  updated_at               :datetime
+#  owner_id                 :integer
+#  cover_photo_file_name    :string(255)
+#  cover_photo_content_type :string(255)
+#  cover_photo_file_size    :integer
+#  cover_photo_updated_at   :datetime
 #
 
 class Haul < ActiveRecord::Base
+  
+  has_attached_file :cover_photo, :styles => {:browser => '220x220#' }
+  validates_attachment_content_type :cover_photo, :content_type => /\Aimage/
   
   validates :owner_id, presence: true
   

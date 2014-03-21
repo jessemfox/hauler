@@ -1,0 +1,11 @@
+
+
+<ul>
+<% for (var i = 0; i<hauls.models.length; i++){ %>
+	<li>
+		<a href='/#/hauls/<%= hauls.models[i].id%>'> <%= hauls.models[i].get('title') %></a>
+	</li>
+
+<% } %>
+</ul>
+

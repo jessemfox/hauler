@@ -5,8 +5,8 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title">Make Your Haul</h4>
       </div>
-      <div class="modal-body">
-				<form>
+      <div class="modal-body" id='make-haul-body'>
+				<form class='submitHaul'>
 					<input type='hidden' name='haul[owner_id]' value='<%= cUser%>'
 					<label for='modal-title'> Title</label><br>
 						<input type='text' name='haul[title]' placeholder='Enter Title' id='modal-title'></input><br>
@@ -14,7 +14,11 @@
 					
 					<label for='modal-desc'> Description</label><br>
 						<input type='text' name='haul[description]' placeholder='Enter Description' id='modal-desc'></input><br>
-					</label>
+					</label><br>
+					
+						<input type='file' name='haul[cover_photo]' class='file-upload-input'></input><br>
+					
+					<canvas id='cover-preview'  width="220" height="220"></canvas>
 				
         
       </div>

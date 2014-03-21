@@ -15,7 +15,8 @@ Hauler.Views.MakeHaul = Backbone.View.extend({
 	template: JST['hauls/make'],
 	
 	events: {
-		'click button#post-haul' : 'submit'
+		'click button#post-haul' : 'submit',
+		'change input.file-upload-input': "retrieveCoverPhoto"
 	},
 	
 	render: function(){
@@ -26,11 +27,37 @@ Hauler.Views.MakeHaul = Backbone.View.extend({
 		return this;
 	},
 	
+	retrieveCoverPhoto: function(event){
+		var img = $('<img>');
+		
+		var that = this;
+		var file = event.target.files[0];
+		var reader = new FileReader();
+		reader.onload = function (e) {
+			that.fileData = e.target.result;			
+			img.attr('src', e.target.result);
+			var canvas = that.$('#cover-preview')[0];
+			var ctx = canvas.getContext('2d');		
+			ctx.drawImage(img[0], 0, 0, 220, 220);
+		}
+		reader.readAsDataURL(file);
+	},
+	
 	submit: function(event){
 		event.preventDefault();
 	
 		var params = $(event.currentTarget.form).serializeJSON()['haul']
-		var haul = new Hauler.Models.Haul(params)
+		var haul = new Hauler.Models.Haul({
+			haul: {
+				cover_photo: this.fileData,
+				title: params.title,
+				description: params.description,
+				owner_id: params.owner_id
+				
+			}
+			
+			
+		});
 		var myHauls = Hauler.Collections.users.getOrFetch(this.cUser).hauls()
 		
 		haul.save({},{

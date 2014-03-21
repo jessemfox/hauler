@@ -21,15 +21,16 @@ Hauler.Routers.Hauls = Backbone.Router.extend({
 	
 	userProfile: function(id){
 		var user = Hauler.Collections.users.getOrFetch(id);
-		var userHauls = new Hauler.Collections.MyHauls({
+		var userHauls = new Hauler.Collections.MyHauls([],{
 			user: user
 		})
 		var that = this;
 		userHauls.fetch({
 			success: function(){
-				var view = new Hauler.Views.UserShow({
+				var view = new Hauler.Views.ShowUser({
 					collection: userHauls
 				});
+				debugger
 				that._swapView(view);
 			}
 		})
