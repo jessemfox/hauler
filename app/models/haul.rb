@@ -26,6 +26,7 @@ class Haul < ActiveRecord::Base
   
   # has_many :haul_items, :class_name => 'HaulItem', :foreign_key => :haul_id
   has_many :post_images, :class_name => 'PostImage', :foreign_key => :haul_id
+  has_many :products, :class_name => 'Product', :foreign_key => :haul_id
   
   has_many :saves, :class_name => 'Save', :foreign_key => :haul_id
   has_many :savers, through: :saves, source: :user
@@ -64,5 +65,7 @@ class Haul < ActiveRecord::Base
     Haul.find_by_sql(sql).to_a
     
   end
+  
+
   
 end

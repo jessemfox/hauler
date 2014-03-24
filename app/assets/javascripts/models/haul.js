@@ -8,6 +8,12 @@ Hauler.Models.Haul = Backbone.Model.extend({
       delete jsonResp.postImages;
     }
 		
+		if (jsonResp.products){
+			
+			this.products().set(jsonResp.products)
+			delete jsonResp.products
+		}
+		
     return jsonResp;
   },
 	
@@ -17,8 +23,20 @@ Hauler.Models.Haul = Backbone.Model.extend({
         haul: this
       });
     }
+		
 
     return this._postImages;
+  },
+	
+  products: function () {
+    if (!this._products) {
+      this._products = new Hauler.Collections.HaulProducts([], {
+        haul: this
+      });
+    }
+		
+
+    return this._products;
   },
 	
 });

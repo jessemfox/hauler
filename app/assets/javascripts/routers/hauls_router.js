@@ -5,35 +5,74 @@ Hauler.Routers.Hauls = Backbone.Router.extend({
 		'trending' : 'trendShow',
 		'postHaul' : 'postHaul',
 		'hauls/:id' : 'showHaul',
-		'users/:id' : 'userProfile'
+		'users/:id' : 'userProfile',
+		'users/:id/followers' : 'followList',
+		'users/:id/following' : "followingList"
 	},
-	
+	//fix this!!! for now i'm defaulting to userProfile
 	currentUserFeed: function(){
+		var that = this;
 		var current_user_id = JSON.parse($('#bootstrapped-current-user').html()).id
-		var user = Hauler.Collections.users.getOrFetch(current_user_id)
-	
-		var view = new Hauler.Views.UserFeed({
-			model: user
+		var user = Hauler.Collections.users.get(current_user_id)
+		
+		var feed = new Hauler.Collections.Feed([],{ user: user })
+		
+		feed.fetch({
+			success: function(){
+				var view = new Hauler.Views.UserFeed({
+					collection: feed
+				});
+				that._swapView(view)
+			}
 		})
-		this._swapView(view)
+		
+		// var user = Hauler.Collections.users.getOrFetch(current_user_id, function(user){
+// 			var view = new Hauler.Views.UserFeed({
+// 				model: user
+// 			})
+// 			
+// 			that._swapView(view)
+// 		})
+		
+		
 		
 	},
 	
-	userProfile: function(id){
-		var user = Hauler.Collections.users.getOrFetch(id);
-		var userHauls = new Hauler.Collections.MyHauls([],{
-			user: user
-		})
+	followList: function(id) {
 		var that = this;
-		userHauls.fetch({
-			success: function(){
-				var view = new Hauler.Views.ShowUser({
-					collection: userHauls
-				});
-				debugger
-				that._swapView(view);
-			}
-		})
+		Hauler.Collections.users.getOrFetch(id, function(user){
+			
+			var view = new Hauler.Views.Followers({
+				model: user
+			});
+			
+			that._swapView(view)
+		});
+	},
+	
+	followingList: function(id) {
+		var that = this;
+		Hauler.Collections.users.getOrFetch(id, function(user){
+			
+			var view = new Hauler.Views.Following({
+				model: user
+			});
+			
+			that._swapView(view)
+		});
+	},
+	
+	
+	userProfile: function(id){
+		var that = this;
+		Hauler.Collections.users.getOrFetch(id, function(user){
+			
+			var view = new Hauler.Views.ShowUser({
+				user: user
+			});
+			
+			that._swapView(view)
+		});
 		
 	},
 	
@@ -70,10 +109,13 @@ Hauler.Routers.Hauls = Backbone.Router.extend({
 		Hauler.Collections.hauls.getOrFetch(id, function(haul){
 			var view = new Hauler.Views.HaulShow({
 				model: haul,
-				cUser: current_user_id
+				cUser: Hauler.Collections.users.get(current_user_id)
 			});
+			
 			that._swapView(view)
+		
 		});
+		
 	},
 	
 	

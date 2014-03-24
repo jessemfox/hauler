@@ -194,6 +194,7 @@ DEPENDENCIES
   figaro
   jbuilder (~> 1.2)
   jquery-rails
+  nokogiri
   paperclip (~> 4.1)
   pg
   rails (= 4.0.2)

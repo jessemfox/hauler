@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321220445) do
+ActiveRecord::Schema.define(version: 20140324003320) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,20 @@ ActiveRecord::Schema.define(version: 20140321220445) do
     t.datetime "updated_at"
     t.integer  "haul_id"
   end
+
+  create_table "products", force: true do |t|
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.integer  "haul_id"
+    t.decimal  "price"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "products", ["haul_id"], name: "index_products_on_haul_id", using: :btree
 
   create_table "relationships", force: true do |t|
     t.integer  "follower_id", null: false

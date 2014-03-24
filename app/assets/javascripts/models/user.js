@@ -4,18 +4,23 @@ Hauler.Models.User = Backbone.Model.extend({
 	
 	parse: function(response){
 		
+	
+		
 		if (response.hauls){
 			this.hauls().set(response.hauls)
 			delete response.hauls
-		} else if( response.followers) {
+		}
+		if( response.followers) {
 			this.followers().set(response.followers)
 			delete response.followers
 			
-		} else if( response.followed_users) {
+		} 
+		if( response.followed_users) {
 			this.followedUsers().set(response.followed_users)
 			delete response.followed_users
 		
-		} else if( response.saved_hauls) {
+		} 
+		if( response.saved_hauls) {
 			this.savedHauls().set(response.saved_hauls)
 			delete response.saved_hauls
 		}

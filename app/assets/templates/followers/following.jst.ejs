@@ -1,0 +1,9 @@
+
+<ul>
+	<% for (var i = 0; i< user.followedUsers().models.length; i++){ %>
+		<li>
+			<a href='/apps/#/users/<%= user.followedUsers().models[i].id %>'>
+				<%= user.followedUsers().models[i].get('email') %> </a>
+		</li>
+	<% } %>
+</ul>

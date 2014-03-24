@@ -3,7 +3,8 @@ Hauler.Views.HaulShow = Backbone.CompositeView.extend({
 	initialize: function(options){
 		this._cUser = options.cUser
 		this.listenTo(this.model, 'sync', this.render)
-		this.listenTo(this.model.postImages(), 'sync', this.render)
+		this.listenTo(this.model.postImages(), 'sync add', this.render)
+		this.listenTo(this.model.products(), 'sync add', this.render)
 		var that = this;
 		
 		this.model.postImages().forEach(function(img){
@@ -13,23 +14,38 @@ Hauler.Views.HaulShow = Backbone.CompositeView.extend({
 			});
 			that.addSubview('div.row', subView)
 		})
+		
+		this.model.products().forEach(function(prod){
+			
+			var subView = new Hauler.Views.HaulProduct ({
+				model: prod,
+				haul: that.model
+			});
+			that.addSubview('div.row', subView)
+		})
+		
 	},
 	
 	events: {
 		'click button#add-post-image' : "showPostImageModal",
+		'click button#add-product' : "showProductModal",
 		'click button.close-mymodal' : "removeModal",
 		'change input.file-upload-input': "retrieveFile",
-		'click button#post-haul-image' : 'submitHaulImage'		
+		'click button#post-haul-image' : 'submitHaulImage',
+		'click button#find-product' : 'findProduct',	
+		'click img.prodPic' : 'selectPic',
+		'click button#submit-product' : 'submitProduct'
 	},
 	
 	template: JST['hauls/show'],
 	
 	render: function(){
-		
+
 		var content = this.template({
 			haul: this.model,
 			cUser: this._cUser
 		})
+		
 		this.$el.html(content);
 		this.renderSubviews()
 		return this;
@@ -44,6 +60,69 @@ Hauler.Views.HaulShow = Backbone.CompositeView.extend({
 		$('#haulImage-modal').modal();
 		
 	},
+	
+	showProductModal: function(){
+		var that = this;
+		var productModal = JST['items/productForm']({
+			haul: that.model.id
+		});
+		this.$el.append(productModal)
+		$('#product-modal').modal();
+		
+	},
+	
+	putImgs: function(links){
+		links.forEach(function(link){
+			var lnk = $('<img src="' + link +'" height="220" width="220" class="prodPic">')
+			$('.modal-body').append(lnk)
+		});
+		
+	},
+	
+	putPrice: function(price){
+		 
+		var inp = $('<input type="text" id="productPrice" value="' + price[0] + '">')
+		$('.modal-body').append(inp)
+		
+	},
+	
+	selectPic: function(event){
+		$(event.currentTarget).toggleClass('select')
+	},
+	
+	changeProductFormButton: function(){
+		$('button#find-product').remove()
+		var btn = $('<button id="submit-product" type="btn btn-primary" >')
+		btn.html('Submit')
+		$('.modal-footer').append(btn)
+	},
+	
+	findProduct: function(event){
+		var that = this;
+		event.preventDefault();
+		var data = {
+			url: $('input#product-url').val()
+		}
+		
+		$.ajax({
+			type: 'POST',
+	    url: '/product_parsers',
+	    data: data,
+	    dataType: 'json',
+	    success: function( resp ) {
+	      //console.log(resp[0])
+				that.putPrice(resp[2])
+				that.putImgs(resp[1])
+				var url = $('<p class="prod-url">')
+				url.attr('data-url',resp[0][0])
+				$('.modal-body').append(url)
+				
+				that.changeProductFormButton()
+	    }
+		});
+	},
+	
+	
 	
 	removeModal: function(event){
 		
@@ -68,10 +147,17 @@ Hauler.Views.HaulShow = Backbone.CompositeView.extend({
 		reader.readAsDataURL(file);
 	},
 	
+	retrieveProductFile: function(event){
+		var img = $('.select')[0]
+	},
+	
 	showPostImage: function() {
-		var user = Hauler.Collections.users.getOrFetch(this._cUser)
+		var user = this._cUser
 		var newSquare = $('<div class="col-xs-4 square">')
-		var preview = this.$('#pic-preview')[0]
+		//fix this preview line (get it to copy the canvas and image to the page)
+		var preview = this.$('#pic-preview').clone()[0]
+		//.drawImage(this.fileData, 0, 0, 220, 220)
+		
 		newSquare.append(preview)
 		var label = $('<div class="square-label"><span>' + user.escape('email') + "</span></div>")
 		newSquare.append(label[0])
@@ -92,7 +178,7 @@ Hauler.Views.HaulShow = Backbone.CompositeView.extend({
 				haul_id: params.haul_id
 			}
 		});
-		
+	
 		postImage.save({},{
 			
 			
@@ -110,6 +196,42 @@ Hauler.Views.HaulShow = Backbone.CompositeView.extend({
 		})
 		
 		that.showPostImage();
+	},
+	
+	submitProduct: function(event){
+		event.preventDefault();
+		var that = this;
+		var img = $('.select').first().attr('src')
+		var url = $('.prod-url').data('url')
+		var price = parseInt($('#productPrice').val().substring(1),10)
+		var data = {
+			url: url,
+			image: img,
+			price: price,
+			haul_id: this.model.id,
+			
+		};
+		
+		$.ajax({
+			type: 'POST',
+	    url: '/product_parsers/encode',
+	    data: data,
+	    dataType: 'json',
+	    success: function( resp ) {
+	      //console.log(resp[0])
+				var product = new Hauler.Models.Product(resp);
+				var subView = new Hauler.Views.HaulProduct ({
+					model: product,
+					haul: that.model
+				});
+				that.addSubview('div.row', subView)
+				that.model.products().add(product)
+				$('#product-modal').modal('hide');
+				$('body').removeClass('modal-open')
+				$('div.modal-backdrop').remove()
+	    }
+		});
+		
 	}
 	
 })

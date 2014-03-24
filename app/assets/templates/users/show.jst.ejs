@@ -1,4 +1,15 @@
 
+<% if (!(user.id===cUser)){ %>
+	<button id='follow-button' class='btn btn-primary'>
+		<%= (following ? "Following" : 'Follow') %>
+		
+
+	</button>
+<% } %>
+
+<button id='followed-users' class='btn btn-default'><%= followed_users.models.length %> Following </button>
+<button id='followers' class='btn btn-default'><%= followers.models.length %> Followers </button>
+
 
 <ul>
 <% for (var i = 0; i<hauls.models.length; i++){ %>
@@ -9,3 +20,4 @@
 <% } %>
 </ul>
 
+<div class='row cover'></div>

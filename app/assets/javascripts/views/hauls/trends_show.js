@@ -5,13 +5,13 @@ Hauler.Views.TrendShow = Backbone.CompositeView.extend({
 	initialize: function(){
 		this.listenTo(this.collection, 'sync', this.render)
 		var that = this;
-		this.collection.forEach(function(el){
+		this.collection.models.forEach(function(el){
 			
-			
-			var subView = new Hauler.Views.HaulImage ({
-				model: el
-			});
-			that.addSubview('div', subView)
+			var haulCover = new Hauler.Views.HaulCover({
+				model: el,
+				cUser: JSON.parse($('#bootstrapped-current-user').html()).id
+			})
+			that.addSubview('div.row', haulCover)
 			
 		});
 	},

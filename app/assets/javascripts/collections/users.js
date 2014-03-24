@@ -3,20 +3,23 @@ Hauler.Collections.Users = Backbone.Collection.extend({
   model: Hauler.Models.User,
 	url: '/api/users',
 	
-	getOrFetch: function(id){
+	getOrFetch: function(id, callback){
 		var user;
 		var users = this;
 		if(user = this.get(id)){
-			user.fetch();
-			return user;
+			user.fetch({
+				success: callback
+			});
 		} else{
 			user = new Hauler.Models.User({id: id});
 			user.fetch({
+				
 				success: function(){
 					users.add(user)
+					callback(user)
 				}
 			});
-			return user;
+	
 		}
 	}
 

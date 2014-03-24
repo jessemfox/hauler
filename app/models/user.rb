@@ -58,6 +58,10 @@ class User < ActiveRecord::Base
     follows.find_by(followed_id: other_user.id).destroy if follow
   end
   
+  def feed
+    users = followed_users.pluck(:id)
+    Haul.where(:owner_id => users)
+  end
   
   
   

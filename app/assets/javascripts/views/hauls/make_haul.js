@@ -58,7 +58,11 @@ Hauler.Views.MakeHaul = Backbone.View.extend({
 			
 			
 		});
-		var myHauls = Hauler.Collections.users.getOrFetch(this.cUser).hauls()
+		var myHauls;
+		Hauler.Collections.users.getOrFetch(this.cUser, function(user){
+			myHauls = user.hauls();
+			
+		})
 		
 		haul.save({},{
 			

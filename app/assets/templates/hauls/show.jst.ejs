@@ -2,9 +2,11 @@
 
 <center> <p> <%= haul.escape('title')%> </p> </center>
 <p> <%= haul.escape('description')%> </p>
-<% if (haul.escape('owner_id') === cUser.toString()) { %>
-	<%= console.log('true') %>
+<% if (haul.escape('owner_id') === cUser.id.toString()) { %>
+	
 	<button class='btn btn-primary' id='add-post-image'> Add Your Own Image!
+	</button>
+	<button class='btn btn-primary' id='add-product'> Add Product!
 	</button>
 <% }%>
 <hr>

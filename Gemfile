@@ -36,6 +36,7 @@ gem 'figaro'
 gem "paperclip", "~> 4.1"
 gem "aws-sdk"
 gem 'devise'
+gem 'nokogiri'
 
 
 gem 'backbone-on-rails'
