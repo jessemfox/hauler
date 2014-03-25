@@ -51,6 +51,7 @@ end
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'debugger'
 end
 
 group :development, :test do 
@@ -58,7 +59,7 @@ group :development, :test do
   gem 'activerecord-import', '~> 0.4.0'
 end
 
-gem 'debugger'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
