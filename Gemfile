@@ -38,6 +38,7 @@ gem "aws-sdk"
 gem 'devise'
 gem 'nokogiri'
 
+gem 'thread_safe', '0.3.1'
 
 gem 'backbone-on-rails'
 
