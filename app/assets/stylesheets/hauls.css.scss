@@ -51,3 +51,48 @@ img.prodPic{
 img.prodPic.select{
 	border:1px solid green;
 }
+
+
+
+div.tag{
+	display:none;
+}
+
+div.square:hover .tag{
+	display:block;
+	position:absolute;
+	top:5%;
+	float:top;
+	background-color:#f6c415;
+	height:51px;
+	width:90px;
+	padding-top:5%;
+	padding-left:10%;
+	margin:0 0 0 0;
+	
+}
+
+div.save{
+	display:block;
+	
+	
+	
+}
+
+div.square:hover .save{
+	display:block;
+	position:absolute;
+	top:5%;
+	float:right;
+	clear:right;
+	background-color:#1197d4;;
+	height:51px;
+	width:98px;
+	padding-top:5%;
+	padding-left:10%;
+	margin-left:45%;
+	
+
+}
+
+
