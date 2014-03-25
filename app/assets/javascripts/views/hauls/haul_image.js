@@ -15,7 +15,7 @@ Hauler.Views.HaulImage = Backbone.View.extend({
 	},
 	
 	events: {
-		// 'mouseover img' : 'showProductInfo'
+		'click div.save' : 'saveImage'
 	},
 	
 	template: JST['hauls/image'],
@@ -28,6 +28,7 @@ Hauler.Views.HaulImage = Backbone.View.extend({
 // 	},
 	
 	render: function(){
+		
 		var content = this.template({
 			image: this.model,
 			owner: this._owner
@@ -37,8 +38,25 @@ Hauler.Views.HaulImage = Backbone.View.extend({
 		
 	},
 	
-	showProductInfo: function(){
+	saveImage: function(event){
+		var that = this;
+		var data = {
+			image_save: {
+				user_id: JSON.parse($('#bootstrapped-current-user').html()).id,
+				post_image_id: this.model.id	
+			}
+		}
 		
+		$.ajax({
+			type: 'POST',
+	    url: '/image_saves',
+	    data: data,
+	    dataType: 'json',
+	    success: function( resp ) {
+	      
+				that._owner.savedImages().add(that.model)
+	    }
+		});
 	}
 	
 })

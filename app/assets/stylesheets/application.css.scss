@@ -13,6 +13,11 @@
  */
 
 @import "bootstrap";
+@import url('http://fonts.googleapis.com/css?family=Ubuntu+Mono');
+$main-font: "Ubuntu Mono";
+nav.navbar{
+	margin-bottom:0px;
+}
 
 div.square{
 	border:1px solid #9D9D9E;
@@ -27,12 +32,14 @@ div.square{
 div.square-label{
 	position:absolute;
 	bottom:0;
+	font-family: $main-font;
 }
 
 body{
 	background-color:#e7e7e7;
 	padding-top:51px;
 	position:relative;
+	font-family: $main-font;
 }
 
 canvas{
@@ -80,4 +87,5 @@ img.img-square{
 	float:left;
 	padding:0px;
 	margin:0px;
+	border-bottom:1px solid #9D9D9E;
 }

@@ -3,6 +3,7 @@ json.postImages @postImages do |postImage|
 	json.url postImage.photo.url(:browser)
 	json.haul postImage.haul_id
 	json.owner @haul.owner_id
+	json.id postImage.id
 end
 
 json.products @products do |product|

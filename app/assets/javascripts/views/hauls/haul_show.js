@@ -19,7 +19,7 @@ Hauler.Views.HaulShow = Backbone.CompositeView.extend({
 			
 			var subView = new Hauler.Views.HaulProduct ({
 				model: prod,
-				haul: that.model
+				owner: Hauler.Collections.users.get(that.model.get('owner_id'))
 			});
 			that.addSubview('div.row', subView)
 		})
@@ -176,6 +176,7 @@ Hauler.Views.HaulShow = Backbone.CompositeView.extend({
 			post_image:{
 				photo: this.fileData,
 				haul_id: params.haul_id
+				
 			}
 		});
 	
@@ -185,7 +186,15 @@ Hauler.Views.HaulShow = Backbone.CompositeView.extend({
 			success: function(a,response,c){
 				
 				var img = new Hauler.Models.PostImageUrl(response);
-				that.model.postImages().push(img);
+				var subView = new Hauler.Views.HaulImage({
+					model: img
+				})
+				that.addSubview('div.row', subView)
+				that.model.postImages().add(img)
+				$('#postImage-modal').modal('hide');
+				$('body').removeClass('modal-open')
+				$('div.modal-backdrop').remove()
+				
 				// var subView = new Hauler.Views.HaulImage ({
 // 					model: img
 // 				});
@@ -195,7 +204,7 @@ Hauler.Views.HaulShow = Backbone.CompositeView.extend({
 
 		})
 		
-		that.showPostImage();
+		//that.showPostImage();
 	},
 	
 	submitProduct: function(event){
@@ -222,7 +231,7 @@ Hauler.Views.HaulShow = Backbone.CompositeView.extend({
 				var product = new Hauler.Models.Product(resp);
 				var subView = new Hauler.Views.HaulProduct ({
 					model: product,
-					haul: that.model
+					owner: Hauler.Collections.users.get(that.model.get('owner_id'))
 				});
 				that.addSubview('div.row', subView)
 				that.model.products().add(product)

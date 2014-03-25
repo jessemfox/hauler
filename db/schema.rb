@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140324003320) do
+ActiveRecord::Schema.define(version: 20140325024206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(version: 20140324003320) do
 
   add_index "hauls", ["owner_id"], name: "index_hauls_on_owner_id", using: :btree
 
+  create_table "image_saves", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "post_image_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "image_saves", ["post_image_id"], name: "index_image_saves_on_post_image_id", using: :btree
+  add_index "image_saves", ["user_id"], name: "index_image_saves_on_user_id", using: :btree
+
   create_table "post_images", force: true do |t|
     t.string   "photo_file_name"
     t.string   "photo_content_type"
@@ -49,6 +59,16 @@ ActiveRecord::Schema.define(version: 20140324003320) do
     t.datetime "updated_at"
     t.integer  "haul_id"
   end
+
+  create_table "product_saves", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "product_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "product_saves", ["product_id"], name: "index_product_saves_on_product_id", using: :btree
+  add_index "product_saves", ["user_id"], name: "index_product_saves_on_user_id", using: :btree
 
   create_table "products", force: true do |t|
     t.string   "photo_file_name"
@@ -73,16 +93,6 @@ ActiveRecord::Schema.define(version: 20140324003320) do
 
   add_index "relationships", ["followed_id"], name: "index_relationships_on_followed_id", using: :btree
   add_index "relationships", ["follower_id"], name: "index_relationships_on_follower_id", using: :btree
-
-  create_table "saves", force: true do |t|
-    t.integer  "haul_id",    null: false
-    t.integer  "user_id",    null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "saves", ["haul_id"], name: "index_saves_on_haul_id", using: :btree
-  add_index "saves", ["user_id"], name: "index_saves_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

@@ -24,4 +24,10 @@ class PostImage < ActiveRecord::Base
 #     
   
   belongs_to :haul
+  delegate :owner, to: :haul
+  
+  has_many :saves, :class_name => :image_save, :foreign_key => :post_image_id
+  
+  has_many :savers, through: :saves, source: :user
+  
 end

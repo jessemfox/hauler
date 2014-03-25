@@ -1,3 +1,4 @@
+
 <img class='img-square' src='<%=haul.escape('image')%>'>
 
 <div class='haul-cover-label'>
@@ -20,8 +21,16 @@
 		<p>  
 			<a href='/apps/#/hauls/<%= haul.id %>'> View this Haul! </a> 
 		</p>
-	
-	
-	
+		<div>
+		<div class='cover-post-images'>
+			<center><p>Images </p></center>
+			<center><p><%= haul.escape('_post_images') %></p></center>
+			
+		</div>
+		<div class='cover-products'>
+			<center><p>Products </p></center>
+			<center><p><%= haul.escape('_products') %></p></center>
+		</div>
+		</div>
 	
 </div>

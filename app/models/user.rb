@@ -39,10 +39,13 @@ class User < ActiveRecord::Base
 
   has_many :hauls, :class_name => 'Haul', :foreign_key => :owner_id
 
-  has_many :saves, :class_name => 'Save', :foreign_key => :user_id
-
-  has_many :saved_hauls, through: :saves, source: :haul
-
+  has_many :product_saves, class_name: 'ProductSave', foreign_key: :user_id
+  
+  has_many :saved_products, through: :product_saves, source: :product
+  
+  has_many :image_saves, class_name: 'ImageSave', foreign_key: :user_id
+  
+  has_many :saved_images, through: :image_saves, source: :post_image
 
 
   def following?(other_user)

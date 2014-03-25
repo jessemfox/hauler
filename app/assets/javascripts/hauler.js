@@ -8,15 +8,41 @@ window.Hauler = {
     
 		Hauler.Collections.users.fetch({
 			complete: function(xhr, textStatus) {
-			    console.log(textStatus);
+			    
 				
-					new Hauler.Routers.Hauls();
+					var router =  new Hauler.Routers.Hauls();
+					router.bind('all', function(route, action) {
+						
+						toggleNavBar(action)
+					});
 					Backbone.history.start()
+					
 				}
 		})
 		
 		
   }
+};
+
+toggleNavBar = function(action){
+	if(action === 'saves'){
+		
+		$('li.nav.active').toggleClass('active');
+		$('li.nav.save').toggleClass('active');
+	}
+	
+	if(action === 'trendShow'){
+		
+		$('li.nav.active').toggleClass('active');
+		$('li.nav.trends').toggleClass('active');
+	}
+	
+	if(action === 'currentUserFeed'){
+		
+		$('li.nav.active').toggleClass('active');
+		$('li.nav.feed').toggleClass('active');
+	}
+	
 };
 
 Backbone.CompositeView = Backbone.View.extend({

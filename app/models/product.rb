@@ -21,6 +21,10 @@ class Product < ActiveRecord::Base
    
   
   belongs_to :haul
+  delegate :owner, to: :haul
   
+  has_many :saves, class_name: 'ProductSave', foreign_key: :product_id
+  
+  has_many :savers, through: :saves, source: :user
   
 end

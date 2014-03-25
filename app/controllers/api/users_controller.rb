@@ -11,7 +11,8 @@ class Api::UsersController < ApplicationController
     @hauls = @user.hauls
     @followers = @user.followers
     @followed_users = @user.followed_users
-    @saved_hauls = @user.saved_hauls
+    @saved_images = @user.saved_images
+    @saved_products = @user.saved_products
   end
   
   def index

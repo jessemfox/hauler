@@ -20,15 +20,27 @@ Hauler.Views.ShowUser = Backbone.CompositeView.extend({
 		
 	},
 	
+	attributes: function(){
+		return {
+			
+			'class' : 'user-div'
+		}
+	},
+	
 	following: function(){
 		var that = this;
 		var cUser = JSON.parse($('#bootstrapped-current-user').html()).id
 		if (cUser === this.user.id){return false;}
 		Hauler.Collections.users.getOrFetch(cUser, function(user){
-			that.user.followers().models.forEach(function(follower){
-				if (follower.id === user.id) {return true}
+			
+			user.followedUsers().models.forEach(function(followed){
+				
+				if (followed.id === that.user.id) { 
+					
+					return true;}
 			})
 		})
+		
 		return false;
 	},
 	

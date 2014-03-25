@@ -28,8 +28,7 @@ class Haul < ActiveRecord::Base
   has_many :post_images, :class_name => 'PostImage', :foreign_key => :haul_id
   has_many :products, :class_name => 'Product', :foreign_key => :haul_id
   
-  has_many :saves, :class_name => 'Save', :foreign_key => :haul_id
-  has_many :savers, through: :saves, source: :user
+  
   
   
   #trending currently gets all of the haul_ids that were created in 

@@ -2,9 +2,9 @@ Hauler.Views.HaulProduct = Backbone.View.extend({
 	
 	initialize: function(options){
 		this.model = options.model
-		console.log(this.model)
-		this.haul = options.haul;
-		this._owner = Hauler.Collections.users.get(this.haul.get('owner_id'));
+		
+		// this.haul = options.haul;
+		this._owner = options.owner
 		
 	},
 	
@@ -18,6 +18,10 @@ Hauler.Views.HaulProduct = Backbone.View.extend({
 		}
 	},
 	
+	events: {
+		'click div.save' : 'saveProduct'
+	},
+	
 	render: function(){
 		
 		var content = this.template({
@@ -26,6 +30,28 @@ Hauler.Views.HaulProduct = Backbone.View.extend({
 		});
 		this.$el.html(content);
 		return this;
+	},
+	
+	saveProduct: function(event){
+		var that = this;
+		var data = {
+			product_save: {
+				user_id: JSON.parse($('#bootstrapped-current-user').html()).id,
+				product_id: this.model.id	
+			}
+		}
+		
+		$.ajax({
+			type: 'POST',
+	    url: '/product_saves',
+	    data: data,
+	    dataType: 'json',
+	    success: function( resp ) {
+	     	console.log(resp)
+				that._owner.savedProducts().add(that.model)
+				console.log(that._owner.savedProducts())
+	    }
+		});
 	}
 	
 	

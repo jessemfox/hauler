@@ -17,6 +17,7 @@ div.haul-cover-label{
 	position:absolute;
 	left:230px;
 	top:10px;
+	width:50%;
 }
 
 p.prod-url{
@@ -95,4 +96,39 @@ div.square:hover .save{
 
 }
 
+div.cover-post-images{
+	background-color:#8F99CF;
+	height:45%;
+	width:45%;
+	float:left;
+	opacity:.8;
+	border-radius:5%;
+	padding-top:3%;
+}
+
+div.cover-products{
+	background-color:#8FC0CF;
+	height:45%;
+	width:45%;
+	opacity:.8;
+	border-radius:5%;
+	float:right;
+	padding-top:3%;	
+}
+
+div.haul-description{
+	width:100%;
+	background-color:#FFFFFF;
+	border: 1px solid #9D9D9E;
+	margin-bottom: 1%;
+}
+
+p.haul-title{
+	font-size:24px;
+}
+
+div.haul-description + p{
+	vertical-align:center;
+	padding: 5px 5px 5px 5px;
+}
 

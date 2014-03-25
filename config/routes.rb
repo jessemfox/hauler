@@ -20,6 +20,10 @@ Hauler::Application.routes.draw do
   resources :trends, only: [:index]
   
   resources :product_parsers, only: [:create]
+  
+  resources :image_saves, only: [:create]
+  
+  resources :product_saves, only: [:create]
 
   
   resources :follows, only: [:create, :destroy]

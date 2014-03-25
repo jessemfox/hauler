@@ -1,7 +1,9 @@
 
 
-<center> <p> <%= haul.escape('title')%> </p> </center>
-<p> <%= haul.escape('description')%> </p>
+<center> <p class='haul-title'> <%= haul.escape('title')%> </p> </center>
+<div class='haul-description'>
+<p><b>Description: </b> <%= haul.escape('description')%> </p>
+</div>
 <% if (haul.escape('owner_id') === cUser.id.toString()) { %>
 	
 	<button class='btn btn-primary' id='add-post-image'> Add Your Own Image!

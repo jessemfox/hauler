@@ -4,7 +4,7 @@ Hauler.Models.User = Backbone.Model.extend({
 	
 	parse: function(response){
 		
-	
+		
 		
 		if (response.hauls){
 			this.hauls().set(response.hauls)
@@ -20,9 +20,13 @@ Hauler.Models.User = Backbone.Model.extend({
 			delete response.followed_users
 		
 		} 
-		if( response.saved_hauls) {
-			this.savedHauls().set(response.saved_hauls)
-			delete response.saved_hauls
+		if( response.saved_products) {
+			this.savedProducts().set(response.saved_products)
+			delete response.saved_products
+		}
+		if( response.saved_images) {
+			this.savedImages().set(response.saved_images)
+			delete response.saved_images
 		}
 		
 		return response
@@ -47,14 +51,24 @@ Hauler.Models.User = Backbone.Model.extend({
 		return this._followers
 	},
 	
-	savedHauls: function(){
-		if(!this._savedHauls){
+	savedProducts: function(){
+		if(!this._savedProducts){
 			//ask how to do followers
-			this._savedHauls = new Hauler.Collections.SavedHauls([],{
+			this._savedProducts = new Hauler.Collections.SavedProducts([],{
 				user: this
 			});
 		}
-		return this._savedHauls
+		return this._savedProducts
+	},
+	
+	savedImages: function(){
+		if(!this._savedImages){
+			//ask how to do followers
+			this._savedImages = new Hauler.Collections.SavedImages([],{
+				user: this
+			});
+		}
+		return this._savedImages
 	},
 	
 	followedUsers: function(){
