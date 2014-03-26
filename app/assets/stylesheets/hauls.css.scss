@@ -73,6 +73,22 @@ div.square:hover .tag{
 	
 }
 
+div.square:hover .tag:hover{
+	display:block;
+	position:absolute;
+	top:5%;
+	float:top;
+	background-color: darken(#f6c415, 10%);
+	
+	height:51px;
+	width:90px;
+	padding-top:5%;
+	padding-left:10%;
+	margin:0 0 0 0;
+	
+}
+
+
 div.save{
 	display:block;
 	
@@ -87,6 +103,22 @@ div.square:hover .save{
 	float:right;
 	clear:right;
 	background-color:#1197d4;;
+	height:51px;
+	width:98px;
+	padding-top:5%;
+	padding-left:10%;
+	margin-left:45%;
+	
+
+}
+
+div.square:hover .save:hover{
+	display:block;
+	position:absolute;
+	top:5%;
+	float:right;
+	clear:right;
+	background-color:darken(#1197d4, 10%);;
 	height:51px;
 	width:98px;
 	padding-top:5%;

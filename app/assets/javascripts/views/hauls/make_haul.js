@@ -45,7 +45,7 @@ Hauler.Views.MakeHaul = Backbone.View.extend({
 	
 	submit: function(event){
 		event.preventDefault();
-	
+		$('button#post-haul').html('Posting...')
 		var params = $(event.currentTarget.form).serializeJSON()['haul']
 		var haul = new Hauler.Models.Haul({
 			haul: {

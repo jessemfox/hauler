@@ -13,10 +13,6 @@
 #
 
 class PostImage < ActiveRecord::Base
-
-  
-  
-    
   has_attached_file :photo, :styles => {:browser => '220x220#' }
   validates_attachment_content_type :photo, :content_type => /\Aimage/
   # validates_attachment :photo,

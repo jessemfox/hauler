@@ -209,6 +209,7 @@ Hauler.Views.HaulShow = Backbone.CompositeView.extend({
 	
 	submitProduct: function(event){
 		event.preventDefault();
+		$('button#submit-product').html("Posting...")
 		var that = this;
 		var img = $('.select').first().attr('src')
 		var url = $('.prod-url').data('url')
