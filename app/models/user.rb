@@ -15,11 +15,20 @@
 #  last_sign_in_ip        :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
+#  photo_file_name        :string(255)
+#  photo_content_type     :string(255)
+#  photo_file_size        :integer
+#  photo_updated_at       :datetime
 #
 
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
+  
+  has_attached_file :photo, :styles => {:browser => '220x220#',
+  :thumbnail => "30x30#" }, :default_url => "../assets/default_:style.png"
+  validates_attachment_content_type :photo, :content_type => /\Aimage/
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
       

@@ -1,0 +1,23 @@
+<div class="modal fade" id="haulImage-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close close-mymodal" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Change Your Picture</h4>
+      </div>
+      <div class="modal-body">
+				<form class='submitPostImage' enctype="multipart/form-data">
+					
+					<input type='file' name='user[photo]' class='file-upload-input'></input><br>
+					
+				<canvas id='pic-preview'  width="220" height="220"></canvas>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default close-mymodal" data-dismiss="modal">Close</button>
+        <button id='post-haul-image' type="button" class="btn btn-primary">Change</button>
+				</form>
+      </div>
+    </div>
+  </div>
+</div>

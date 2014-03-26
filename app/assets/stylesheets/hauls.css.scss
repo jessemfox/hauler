@@ -53,6 +53,11 @@ img.prodPic.select{
 	border:1px solid green;
 }
 
+p.cover-title{
+	font-size:24px;
+	font-style:bold;
+}
+
 
 
 div.tag{
@@ -94,6 +99,17 @@ div.save{
 	
 	
 	
+}
+
+img.card-pic{
+	float:left;
+	position:relative;
+	vertical-align:center;
+	padding-bottom:5px;
+}
+
+input#product-url{
+	width:90%;
 }
 
 div.square:hover .save{

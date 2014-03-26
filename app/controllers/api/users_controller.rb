@@ -18,7 +18,7 @@ class Api::UsersController < ApplicationController
   def index
     #maybe don't do this?
     @users = User.all
-    render :json => @users
+    # render :json => @users
   end
   
 
@@ -26,7 +26,7 @@ class Api::UsersController < ApplicationController
   private
   
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :remember_me)
+    params.require(:user).permit(:email, :password, :password_confirmation, :remember_me, :photo)
   end
 
 

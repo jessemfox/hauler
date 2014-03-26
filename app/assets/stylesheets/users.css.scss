@@ -11,11 +11,45 @@ div.row.cover{
 	
 }
 
+div.edit-pic-button.editable{
+	display:none;
+}
+
+div.prof-container:hover .edit-pic-button.editable{
+	display: block;
+	position: absolute;
+	top: 5%;
+	float: right;
+	clear: right;
+	background-color: #1197d4;
+	height: 51px;
+	width: 98px;
+	padding-top: 1%;
+	padding-left: 1%;
+	margin-left: 0%;
+}
+
+div.edit-pic-button{
+	display:none;
+}
+
 div.follow-buttons{
 	height:35px;
 	width:100%;
+	top:0%;
+	left:45%;
+	margin-left:-15px;
+	position:absolute;
+	float:top;
+	
 }
 
+div.prof-container{
+	height:222px;
+	width:222px;
+	border:1px solid #9D9D9E;
+	margin-right:0px;
+}
 
 div.row.hauls{
 	padding-top:1%;
@@ -23,4 +57,11 @@ div.row.hauls{
 
 div.row.saves{
 	padding-top:1%;
+}
+
+div.prof-pic{
+	left:3%;
+	position:relative;
+	margin-bottom:1%;
+	
 }

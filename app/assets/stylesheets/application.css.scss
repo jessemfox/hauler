@@ -19,9 +19,25 @@ nav.navbar{
 	margin-bottom:0px;
 }
 
+input#search-bar{
+	width:300px;
+	margin-top: 5.25%;
+}
+
+li.nav{
+	height:50px;
+	font-size: 16px;
+}
+
+a.nav-pic-container{
+	height:50px;
+	margin-top:0 0 0 0;
+	padding:0 0 0 0;
+}
+
 div.square{
 	border:1px solid #9D9D9E;
-	height: 240px;
+	height: 270px;
 	width: 222px;
 	margin-right:1%;
 	margin-bottom:1%;
@@ -37,7 +53,8 @@ div.square-label{
 
 body{
 	background-color:#e7e7e7;
-	padding-top:51px;
+	
+	margin-top:51px;
 	position:relative;
 	font-family: $main-font;
 }
@@ -88,4 +105,5 @@ img.img-square{
 	padding:0px;
 	margin:0px;
 	border-bottom:1px solid #9D9D9E;
+	border-right:1px solid #9D9D9E;
 }

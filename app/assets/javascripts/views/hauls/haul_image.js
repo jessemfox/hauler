@@ -28,7 +28,7 @@ Hauler.Views.HaulImage = Backbone.View.extend({
 // 	},
 	
 	render: function(){
-		
+		if(!this._owner){debugger}
 		var content = this.template({
 			image: this.model,
 			owner: this._owner

@@ -1,4 +1,9 @@
-json.(@user, :email, :id)
+json.email @user.email
+json.id @user.id
+json.imageB @user.photo.url(:browser)
+json.imageT @user.photo.url(:thumbnail)
+
+
 
 json.hauls @hauls do |haul|
 	json.title haul.title

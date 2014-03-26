@@ -1,17 +1,26 @@
 
-<div class='follow-buttons'>
-<%console.log(following) %>
-<% if (!(user.id===cUser)){ %>
-	<button id='follow-button' class='btn btn-primary'>
-		<%= (following ? "Following" : 'Follow') %>
+<div class='prof-pic'>
+	<div class='prof-container'>
+		<img class='profile-picture' src='<%= user.get('imageB') %>'></image>
+		<div class='edit-pic-button'>Edit</div>
+	</div>
+	<div class='follow-buttons'>
+	<%console.log(following) %>
+	<% if (!(user.id===cUser)){ %>
+		<button id='follow-button' class='btn btn-primary'>
+			<%= (following ? "Following" : 'Follow') %>
 		
 
-	</button>
-<% } %>
+		</button>
+	<% } %>
 
-<button id='followed-users' class='btn btn-default'><%= followed_users.models.length %> Following </button>
-<button id='followers' class='btn btn-default'><%= followers.models.length %> Followers </button>
+	<button id='followed-users' class='btn btn-default'><%= followed_users.models.length %> Following </button>
+	<button id='followers' class='btn btn-default'><%= followers.models.length %> Followers </button>
 
+	</div>
+	
 </div>
+
+
 
 <div class='row cover'></div>

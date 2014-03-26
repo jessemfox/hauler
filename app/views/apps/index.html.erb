@@ -14,6 +14,23 @@
 				 </form>
 			</li>
 			
+			<li class='nav'>
+				
+				<a class='nav-pic-container' href='/#/users/<%= @user.id %>'>
+				<img class='nav-pic' src='<%= @user.photo.url(:thumbnail) %>'>
+				</a>
+			</li>
+			
+			<li class='nav'>
+				
+				<form id='search' action='/users/sign_out' method='post'>
+					<input type='hidden' name='authenticity_token'
+					value='<%= form_authenticity_token %>'>
+					<input type='text' name='search[stuff]' id='search-bar' ></input>
+					<input type='submit' id='search-button' value='Search' class='btn btn-default'></input>
+				 </form>
+			</li>
+			
 		</ul>
   </div>
 </nav>

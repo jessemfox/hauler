@@ -25,6 +25,7 @@ Hauler::Application.routes.draw do
   
   resources :product_saves, only: [:create]
 
+  resources :change_pictures, only: [:update]
   
   resources :follows, only: [:create, :destroy]
   

@@ -16,6 +16,7 @@ class HaulsController < ApplicationController
 
   def show
     @haul = Haul.find(params[:id])
+    @owner = @haul.owner
     @postImages = @haul.post_images
     @products = @haul.products
     #make jbuilder later
