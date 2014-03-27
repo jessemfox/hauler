@@ -15,6 +15,11 @@ window.Hauler = {
 						
 						toggleNavBar(action)
 					});
+					$('#search-button').on('click', function(){
+						window.search()
+					});
+					
+					
 					Backbone.history.start()
 					
 				}
@@ -43,6 +48,22 @@ toggleNavBar = function(action){
 		$('li.nav.feed').toggleClass('active');
 	}
 	
+};
+
+search = function(){
+	var str = $('#search-bar').first().val();
+	var data = {
+		search: {string: str }
+	};
+	$.ajax({
+		type: 'GET',
+    url: '/searches',
+    data: data,
+    dataType: 'json',
+    success: function( resp ) {
+     	console.log(resp)
+		}
+	});
 };
 
 Backbone.CompositeView = Backbone.View.extend({
