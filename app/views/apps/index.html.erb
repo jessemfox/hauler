@@ -17,7 +17,7 @@
 			<li class='nav'>
 				
 				<a class='nav-pic-container' href='/#/users/<%= @user.id %>'>
-				<img class='nav-pic' src='<%= @user.photo.url(:thumbnail) %>'>
+				<img class='nav-pic' src='<%= photo_url_for(@user, :thumbnail) %>'>
 				</a>
 			</li>
 			
