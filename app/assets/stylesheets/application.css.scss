@@ -33,8 +33,9 @@ li.nav{
 
 a.nav-pic-container{
 	height:50px;
-	margin-top:0 0 0 0;
-	padding:0 0 0 0;
+	position:absolute;
+	top:0;
+	padding-left:70px;
 }
 
 div.square{
@@ -98,6 +99,11 @@ div#content{
 div#make-haul-body{
 	height:240px;
 	position:relative;
+}
+
+img.nav-pic{
+	padding-left: 40px;
+	margin-top: -5px;
 }
 
 img.img-square{
