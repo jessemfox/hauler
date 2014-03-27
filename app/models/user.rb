@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   
   has_attached_file :photo, :styles => {:browser => '220x220#',
-  :thumbnail => "30x30#" }, :default_url => "/assets/default_:style.png"
+  :thumbnail => "30x30#" }, :default_url => "default_:style.png"
   validates_attachment_content_type :photo, :content_type => /\Aimage/
   
   devise :database_authenticatable, :registerable,
@@ -75,6 +75,7 @@ class User < ActiveRecord::Base
     Haul.where(:owner_id => users)
   end
   
-  
-  
+  def has_default_photo?
+    self.photo.url[0, 3] != 'http'
+  end
 end

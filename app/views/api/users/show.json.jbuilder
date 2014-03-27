@@ -1,9 +1,7 @@
 json.email @user.email
 json.id @user.id
-json.imageB @user.photo.url(:browser)
-json.imageT @user.photo.url(:thumbnail)
-
-
+json.imageB photo_url_for(@user, :browser)
+json.imageT photo_url_for(@user, :thumbnail)
 
 json.hauls @hauls do |haul|
 	json.title haul.title

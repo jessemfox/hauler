@@ -3,7 +3,7 @@
 json.id @haul.id
 json.title @haul.title
 json.description @haul.description
-json.user_image @owner.photo.url(:thumbnail)
+json.user_image photo_url_for(@owner, :thumbnail)
 json.owner_id @haul.owner_id
 
 json.postImages @postImages do |postImage|
