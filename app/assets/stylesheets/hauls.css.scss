@@ -145,6 +145,38 @@ div.square:hover .save:hover{
 
 }
 
+div.product-info{
+	display:none;
+	
+}
+
+div.square:hover .product-info{
+	display:block;
+	position:absolute;
+	bottom:48px;
+	
+	background-color:#000000;
+	height:100px;
+	width:222px;
+	left:0;
+	
+	float:left;
+	opacity:.8;
+	color:white;
+	
+}
+
+div.product-info a{
+	color:white;
+	padding-left:3%;
+}
+
+div.product-info p{
+	color:white;
+	padding-left:3%;
+}
+
+
 div.cover-post-images{
 	background-color:#8F99CF;
 	height:45%;

@@ -8,7 +8,8 @@ Hauler.Routers.Hauls = Backbone.Router.extend({
 		'users/:id' : 'userProfile',
 		'users/:id/followers' : 'followList',
 		'users/:id/following' : "followingList",
-		'saves' : 'saves'
+		'saves' : 'saves',
+		'search' : 'search'
 	},
 	//fix this!!! for now i'm defaulting to userProfile
 	currentUserFeed: function(){
@@ -28,14 +29,6 @@ Hauler.Routers.Hauls = Backbone.Router.extend({
 			}
 		})
 		
-		// var user = Hauler.Collections.users.getOrFetch(current_user_id, function(user){
-// 			var view = new Hauler.Views.UserFeed({
-// 				model: user
-// 			})
-// 			
-// 			that._swapView(view)
-// 		})
-		
 		
 		
 	},
@@ -51,6 +44,11 @@ Hauler.Routers.Hauls = Backbone.Router.extend({
 			that._swapView(view);
 		});
 		
+	},
+	
+	search: function(){
+		var str = $('#search-bar').first().val()
+		console.log(str)
 	},
 	
 	followList: function(id) {

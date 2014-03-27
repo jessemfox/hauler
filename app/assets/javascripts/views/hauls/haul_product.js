@@ -22,11 +22,22 @@ Hauler.Views.HaulProduct = Backbone.View.extend({
 		'click div.save' : 'saveProduct'
 	},
 	
+	parsePrice: function(){
+		var str = this.model.get('price');
+		var dec = str.indexOf('.');
+		if (str.substring(dec).length===3){
+			if (str[str.length] === '0'){
+				return '$' + parseFloat(str) + '0';
+			} else { return '$' + parseFloat(str) }
+		} else { return '$' + parseInt(str)}
+	},
+	
 	render: function(){
-		
+		var price = this.parsePrice()
 		var content = this.template({
 			product: this.model,
-			owner: this._owner
+			owner: this._owner,
+			price: price
 		});
 		this.$el.html(content);
 		return this;

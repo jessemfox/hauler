@@ -14,7 +14,7 @@
 
 @import "bootstrap";
 @import url('http://fonts.googleapis.com/css?family=Ubuntu+Mono');
-$main-font: "Ubuntu Mono";
+$main-font: "Helvetica Neue";
 nav.navbar{
 	margin-bottom:0px;
 }
@@ -23,6 +23,7 @@ input#search-bar{
 	width:300px;
 	margin-top: 10px;
 	margin-bottom:1%;
+	
 }
 
 li.nav{

@@ -40,7 +40,7 @@ Hauler.Views.HaulShow = Backbone.CompositeView.extend({
 	template: JST['hauls/show'],
 	
 	render: function(){
-
+		
 		var content = this.template({
 			haul: this.model,
 			cUser: this._cUser

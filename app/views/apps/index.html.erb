@@ -23,12 +23,11 @@
 			
 			<li class='nav'>
 				
-				<form id='search' action='/users/sign_out' method='post'>
-					<input type='hidden' name='authenticity_token'
-					value='<%= form_authenticity_token %>'>
-					<input type='text' name='search[stuff]' id='search-bar' ></input>
-					<input type='submit' id='search-button' value='Search' class='btn btn-default'></input>
-				 </form>
+				
+					<div>
+					<input type='text' name='search[string]' id='search-bar' ></input>
+					<a href='/#/search'><button class='btn btn-default'>Search</button></a>
+				 	</div>
 			</li>
 			
 		</ul>

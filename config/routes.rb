@@ -29,5 +29,7 @@ Hauler::Application.routes.draw do
   
   resources :follows, only: [:create, :destroy]
   
+  resources :searches, only: [:index]
+  
   post 'product_parsers/encode', to: 'product_parsers#encode'
 end
