@@ -167,7 +167,7 @@ Hauler.Views.ShowUser = Backbone.CompositeView.extend({
 	   	
 	    success: function( resp ) {
 				console.log(resp)
-	      $('img.profile-picture').attr('src', resp)
+	      $('img.profile-picture').attr('src', resp.picture)
 				$('#postImage-modal').modal('hide');
 				$('body').removeClass('modal-open')
 				$('div.modal-backdrop').remove()

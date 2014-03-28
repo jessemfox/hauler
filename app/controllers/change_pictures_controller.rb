@@ -3,9 +3,9 @@ class ChangePicturesController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-
+    
     if @user.update_attributes(:photo => params[:user][:photo])
-      render :json => @user.photo.url(:browser)
+      render "change_pictures/update"
     else
       render @user.errors
     end
