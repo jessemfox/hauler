@@ -16,7 +16,8 @@ Hauler.Views.MakeHaul = Backbone.View.extend({
 	
 	events: {
 		'click button#post-haul' : 'submit',
-		'change input.file-upload-input': "retrieveCoverPhoto"
+		'change input.file-upload-input': "retrieveCoverPhoto",
+		'click button.close-button' : 'goBack'
 	},
 	
 	render: function(){
@@ -25,6 +26,10 @@ Hauler.Views.MakeHaul = Backbone.View.extend({
 		});
 		this.$el.html(content);
 		return this;
+	},
+	
+	goBack: function(){
+		Backbone.history.history.back()
 	},
 	
 	retrieveCoverPhoto: function(event){

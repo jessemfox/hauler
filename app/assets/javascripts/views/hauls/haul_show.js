@@ -34,7 +34,8 @@ Hauler.Views.HaulShow = Backbone.CompositeView.extend({
 		'click button#post-haul-image' : 'submitHaulImage',
 		'click button#find-product' : 'findProduct',	
 		'click img.prodPic' : 'selectPic',
-		'click button#submit-product' : 'submitProduct'
+		'click button#submit-product' : 'submitProduct',
+		
 	},
 	
 	template: JST['hauls/show'],
@@ -213,6 +214,7 @@ Hauler.Views.HaulShow = Backbone.CompositeView.extend({
 		var that = this;
 		var img = $('.select').first().attr('src')
 		var url = $('.prod-url').data('url')
+	
 		var price = parseInt($('#productPrice').val().substring(1),10)
 		var data = {
 			url: url,

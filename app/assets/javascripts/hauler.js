@@ -16,8 +16,9 @@ window.Hauler = {
 						toggleNavBar(action)
 					});
 					$('#search-button').on('click', function(){
-						window.search()
+						window.search();
 					});
+					
 					
 					
 					Backbone.history.start()
@@ -51,6 +52,7 @@ toggleNavBar = function(action){
 };
 
 search = function(){
+	searchResults = {};
 	var str = $('#search-bar').first().val();
 	var data = {
 		search: {string: str }
@@ -61,7 +63,9 @@ search = function(){
     data: data,
     dataType: 'json',
     success: function( resp ) {
-     	console.log(resp)
+     	$('#search-bar').first().val('');
+			searchResults = new Hauler.Collections.SearchResults(resp);
+			Backbone.history.navigate('search', {trigger: true})
 		}
 	});
 };

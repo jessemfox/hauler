@@ -47,8 +47,8 @@ Hauler.Routers.Hauls = Backbone.Router.extend({
 	},
 	
 	search: function(){
-		var str = $('#search-bar').first().val()
-		console.log(str)
+		var view = new Hauler.Views.SearchResults();
+		this._swapView(view);
 	},
 	
 	followList: function(id) {
