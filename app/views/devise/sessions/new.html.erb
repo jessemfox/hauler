@@ -21,3 +21,14 @@
 
 
 
+<form id='guest-login' action='<%= user_session %>' method="post">
+	
+	<input type='hidden' name='authenticity_token' 
+	value='<%= form_authenticity_token %>'>
+	<input type="hidden" name="user[email]" value="guest@haulit.com">
+	<input type="hidden" name="user[password]" value="password">
+	
+	<input type="submit" value="GUEST ACCOUNT LOGIN" class='btn btn-primary' 
+	id='guest-button'>
+</form>
+	

@@ -12,3 +12,18 @@ div#sign-in-form{
 	padding-left: 10%;
 	padding-right: 10%;
 }
+
+form#guest-login{
+	position: absolute;
+	top: 50%;
+	left: 28%;
+	
+	opacity: .9;
+	padding-left: 10%;
+	padding-right: 10%;
+}
+
+input#guest-button{
+	height:70px;
+	width: 200px;
+}
