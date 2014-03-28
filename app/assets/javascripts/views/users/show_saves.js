@@ -34,6 +34,9 @@ Hauler.Views.UserSaves = Backbone.CompositeView.extend({
 		});
 		this.$el.html(content)
 		this.renderSubviews()
+		
+		this.$el.find('.save').remove()
+		this.$el.find('.tag').remove()
 		return this;
 	},
 	
