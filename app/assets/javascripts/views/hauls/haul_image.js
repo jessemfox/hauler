@@ -15,7 +15,8 @@ Hauler.Views.HaulImage = Backbone.View.extend({
 	},
 	
 	events: {
-		'click div.save' : 'saveImage'
+		'click div.save' : 'saveImage',
+		
 	},
 	
 	template: JST['hauls/image'],
@@ -37,6 +38,8 @@ Hauler.Views.HaulImage = Backbone.View.extend({
 		return this;
 		
 	},
+	
+	
 	
 	saveImage: function(event){
 		var that = this;

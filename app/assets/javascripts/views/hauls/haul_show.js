@@ -35,7 +35,7 @@ Hauler.Views.HaulShow = Backbone.CompositeView.extend({
 		'click button#find-product' : 'findProduct',	
 		'click img.prodPic' : 'selectPic',
 		'click button#submit-product' : 'submitProduct',
-		
+		'click button#delete-haul' : 'deleteHaul'
 	},
 	
 	template: JST['hauls/show'],
@@ -49,6 +49,7 @@ Hauler.Views.HaulShow = Backbone.CompositeView.extend({
 		
 		this.$el.html(content);
 		this.renderSubviews()
+		this.$el.find('.delete').remove()
 		return this;
 	},
 
@@ -123,7 +124,17 @@ Hauler.Views.HaulShow = Backbone.CompositeView.extend({
 		});
 	},
 	
-	
+	deleteHaul: function(event){
+		$.ajax({
+			type: 'DELETE',
+	    url: '/hauls/'+ this.model.id,
+	    
+	    dataType: 'json',
+	    success: function( resp ) {
+				Backbone.history.navigate('', {trigger: true})
+	    }
+		});
+	},
 	
 	removeModal: function(event){
 		

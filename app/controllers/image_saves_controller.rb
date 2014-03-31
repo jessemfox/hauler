@@ -8,6 +8,12 @@ class ImageSavesController < ApplicationController
       render @image_save.errors
     end
   end
+  
+  def destroy
+    @is = ImageSave.find(params[:id])
+    @is.destroy
+    render :json => @is
+  end
 
   private
   

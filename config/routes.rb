@@ -11,7 +11,7 @@ Hauler::Application.routes.draw do
     end
   end
   
-  resources :hauls, only: [:create, :show, :index]
+  resources :hauls, only: [:create, :show, :index, :destroy]
   
   resources :products, only: [:create]
   
@@ -21,9 +21,9 @@ Hauler::Application.routes.draw do
   
   resources :product_parsers, only: [:create]
   
-  resources :image_saves, only: [:create]
+  resources :image_saves, only: [:create, :destroy]
   
-  resources :product_saves, only: [:create]
+  resources :product_saves, only: [:create, :destroy]
 
   resources :change_pictures, only: [:update]
   

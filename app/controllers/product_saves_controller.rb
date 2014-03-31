@@ -8,6 +8,12 @@ class ProductSavesController < ApplicationController
       render @product_save.errors
     end
   end
+  
+  def destroy
+    @ps = ProductSave.find(params[:id])
+    @ps.destroy
+    render :json => @ps
+  end
 
   private
   

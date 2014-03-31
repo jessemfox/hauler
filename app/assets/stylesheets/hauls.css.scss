@@ -65,6 +65,24 @@ div.tag{
 	display:none;
 }
 
+div.square:hover .delete{
+	display:block;
+	position:absolute;
+	top:5%;
+	float:top;
+	background-color:#f6c415;
+	height:51px;
+	width:90px;
+	padding-top:5%;
+	padding-left:10%;
+	margin:0 0 0 0;
+	
+}
+
+div.delete{
+	display:none;
+}
+
 div.square:hover .tag{
 	display:block;
 	position:absolute;
@@ -78,6 +96,7 @@ div.square:hover .tag{
 	margin:0 0 0 0;
 	
 }
+
 
 div.square:hover .tag:hover{
 	display:block;

@@ -21,12 +21,13 @@ class Haul < ActiveRecord::Base
   
   validates :owner_id, presence: true
   
-  belongs_to :owner, :class_name => 'User', :foreign_key => :owner_id,
-  dependent: :destroy
+  belongs_to :owner, :class_name => 'User', :foreign_key => :owner_id
   
   # has_many :haul_items, :class_name => 'HaulItem', :foreign_key => :haul_id
-  has_many :post_images, :class_name => 'PostImage', :foreign_key => :haul_id
-  has_many :products, :class_name => 'Product', :foreign_key => :haul_id
+  has_many :post_images, :class_name => 'PostImage', :foreign_key => :haul_id,
+  dependent: :destroy
+  has_many :products, :class_name => 'Product', :foreign_key => :haul_id,
+  dependent: :destroy
   
   
   

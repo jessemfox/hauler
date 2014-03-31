@@ -22,6 +22,12 @@ class HaulsController < ApplicationController
     #make jbuilder later
     render "hauls/show"
   end
+  
+  def destroy
+    @haul = Haul.find(params[:id])
+    @haul.destroy
+    render :json => @haul
+  end
 
   private
   
